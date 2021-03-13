@@ -1,8 +1,16 @@
 import { CommunicationService } from './../service/communication.service';
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
+import {NestedTreeControl} from '@angular/cdk/tree';
+import {MatTreeNestedDataSource} from '@angular/material/tree';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
+
+
+interface TreeNode {
+  name: string;
+  children?: TreeNode[];
+}
 
 @Component({
   selector: 'app-sidenav',
@@ -15,15 +23,24 @@ export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
   // @Input() showSidenav: boolean = false ;
   // showFiller = false;
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
-  constructor(public commService: CommunicationService, private breakpointObserver: BreakpointObserver) {
+  isHidden = true;
 
+  treeControl = new NestedTreeControl<TreeNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<TreeNode>();
+
+  hasChild = (_: number, node: TreeNode) => !!node.children && node.children.length > 0;
+  constructor(public commService: CommunicationService, private breakpointObserver: BreakpointObserver) {
+    this.dataSource.data = TREE_DATA;
   }
 
   sidenavClosed() {
-    console.log("Close")
     this.commService.expanded = false;
   }
 
+  toggleFinance() {
+    this.isHidden = !this.isHidden;
+    console.log(this.isHidden)
+  }
 
   ngOnChanges(): void {
 
@@ -39,3 +56,13 @@ export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
 }
+
+const TREE_DATA = [
+  {
+    name: "Financial Activity",
+    children: [
+      {name: "Usage"},
+      {name: "Loans"}
+    ]
+  }
+]

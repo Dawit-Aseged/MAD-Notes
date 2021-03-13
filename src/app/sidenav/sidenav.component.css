@@ -28,3 +28,57 @@
 .handheld {
   top: 56px;
 }
+
+.tree-invisible {
+  height: 0;
+  opacity: 0;
+  display: none;
+}
+
+.tree {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.navButton {
+  transition: 0.3s;
+}
+
+.navButton:focus {
+  background-color: transparent;
+}
+
+.navIcon:focus {
+  background-color: transparent;
+}
+
+.navIcon {
+  background-color: transparent;
+}
+
+.navIcon:hover {
+  background-color: transparent;
+}
+
+.navIcon:active {
+  background-color: transparent;
+}
+.navButton:hover {
+  background-color: rgb(150, 150, 150);
+}
+.navButton:active {
+  background-color: rgb(199, 199, 199);
+}
+
+.childNode {
+  width: 100%;
+}
+
+.childNode .childNodeElement {
+  margin-left: 16px;
+}
+
+
+
+
