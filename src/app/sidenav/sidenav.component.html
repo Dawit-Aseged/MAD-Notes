@@ -6,9 +6,9 @@
 >
   <mat-drawer #drawer class="sidenav" [mode]="((isHandset | async)!.matches)? 'over' : 'side'" opened = {{commService.expanded}} (closed) = "sidenavClosed">
       <mat-nav-list class="navlist">
-        <a disableRipple mat-list-item href="#" class="navButton">Notes</a>
+        <a mat-list-item href="#" class="navButton" [disableRipple] = "!(isHandset | async)!.matches">Notes</a>
         <mat-divider></mat-divider>
-        <a disableRipple mat-list-item href="#" class="navButton">Todo</a>
+        <a mat-list-item href="#" class="navButton" [disableRipple] = "!(isHandset | async)!.matches">Todo</a>
         <mat-divider></mat-divider>
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree" #tree>
           <!-- This is the tree node template for leaf nodes -->
@@ -16,8 +16,11 @@
 
               <!-- use a disabled button to provide padding for tree leaf -->
               <!-- <button mat-icon-button disabled></button> -->
-              <div class="childNode navButton">
-                <a mat-list-item href="#" class="childNodeElement navButton" disableRipple>{{node.name}}</a> <!--Child Node-->
+              <div class="childNode" [ngClass] = "{navButton: !(isHandset | async)!.matches}" matRipple [matRippleDisabled] = "!(isHandset | async)!.matches">
+                <a mat-list-item href="#"
+                class="childNodeElement navButton"
+                disableRipple
+                >{{node.name}}</a> <!--Child Node-->
               </div>
               <mat-divider></mat-divider>
 
@@ -25,7 +28,7 @@
           <!-- This is the tree node template for expandable nodes -->
           <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" >
             <li>
-              <div class="mat-tree-node navButton">
+              <div class="mat-tree-node" [ngClass] = "{navButton: !(isHandset | async)!.matches}" matRipple [matRippleDisabled] = "!(isHandset | async)!.matches">
                 <a disableRipple
                 mat-list-item href="#"
                 (click)="treeControl.toggle(node)"
@@ -45,12 +48,11 @@
         </mat-tree>
         <mat-divider></mat-divider>
 
-        <a disableRipple mat-list-item href="#" class="navButton">About</a>
+        <a mat-list-item href="#" class="navButton" [disableRipple] = "!(isHandset | async)!.matches">About</a>
         <mat-divider></mat-divider>
 
       </mat-nav-list>
   </mat-drawer>
-  <button mat-raised-button (click)="toggleFinance"> ASDF</button>
   <mat-nav-list>
 
 

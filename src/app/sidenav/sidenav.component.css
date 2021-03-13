@@ -49,6 +49,14 @@
   background-color: transparent;
 }
 
+.navButton:hover {
+  background-color: rgb(150, 150, 150);
+}
+.navButton:active {
+  background-color: rgb(199, 199, 199);
+}
+
+
 .navIcon:focus {
   background-color: transparent;
 }
@@ -64,19 +72,13 @@
 .navIcon:active {
   background-color: transparent;
 }
-.navButton:hover {
-  background-color: rgb(150, 150, 150);
-}
-.navButton:active {
-  background-color: rgb(199, 199, 199);
-}
 
 .childNode {
   width: 100%;
 }
 
 .childNode .childNodeElement {
-  margin-left: 16px;
+  padding-left: 16px;
 }
 
 

@@ -23,7 +23,6 @@ export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
   // @Input() showSidenav: boolean = false ;
   // showFiller = false;
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
-  isHidden = true;
 
   treeControl = new NestedTreeControl<TreeNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<TreeNode>();
@@ -37,10 +36,6 @@ export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
     this.commService.expanded = false;
   }
 
-  toggleFinance() {
-    this.isHidden = !this.isHidden;
-    console.log(this.isHidden)
-  }
 
   ngOnChanges(): void {
 
