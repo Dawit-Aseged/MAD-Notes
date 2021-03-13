@@ -1,0 +1,24 @@
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar {
+  padding-left: 0;
+  height: 64px;
+}
+
+.menu-icon {
+  height: 64px;
+  width: 64px;
+  border-radius: 0;
+}
+
+.handheld {
+  height: 56px;
+  width: 56px;
+}
+
+.toolbarHandheld {
+  height: 56px;
+}

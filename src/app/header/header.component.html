@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" >
+  <mat-toolbar-row class="toolbar" [ngClass]="{toolbarHandheld: (isHandset | async)!.matches}">
+    <button (click)="toggle()" onclick = "this.blur()" mat-icon-button class="menu-icon" aria-label="Menu Icon Butotn" [ngClass]="{handheld: (isHandset | async)!.matches}">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>MN</span>
+    <!-- Logo to be inserted here -->
+    <span class="spacer"></span>
+    <button mat-icon-button class="favorite-icon" aria-label="Heart Icon Button">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="share-icon" aria-label="Share Icon Button">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

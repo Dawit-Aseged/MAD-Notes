@@ -1,0 +1,23 @@
+<mat-drawer-container
+  class="container"
+  autosize
+  [hasBackdrop] = "(isHandset | async)!.matches"
+  [ngClass] = "{handheld: (isHandset | async)!.matches}"
+>
+  <mat-drawer #drawer class="sidenav" [mode]="((isHandset | async)!.matches)? 'over' : 'side'" opened = {{commService.expanded}} (closed) = "sidenavClosed">
+      <mat-nav-list class="navlist">
+        <a mat-list-item href="#">Notes</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item href="#">Todo</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item href="#">Usage</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item href="#">Loans</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item href="#">About</a>
+        <mat-divider></mat-divider>
+
+      </mat-nav-list>
+  </mat-drawer>
+  <ng-content></ng-content>
+</mat-drawer-container>

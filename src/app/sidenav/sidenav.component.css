@@ -1,0 +1,30 @@
+
+
+.container {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  width: 25%;
+  min-width: 200px;
+}
+
+.navlist{
+  padding: 0;
+}
+
+.handheld {
+  top: 56px;
+}
