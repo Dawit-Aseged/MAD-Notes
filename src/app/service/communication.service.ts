@@ -11,4 +11,8 @@ export class CommunicationService {
   toggleSidenav()  {
     this.expanded = !this.expanded;
   }
+
+  public getNotes() {
+
+  }
 }

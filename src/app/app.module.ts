@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { NotesComponent } from './notes/notes.component';
 
 
 
@@ -22,7 +23,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,
