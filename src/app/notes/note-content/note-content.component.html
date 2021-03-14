@@ -1,0 +1,11 @@
+<div class="normalNote" *ngIf="!isTodo; else todo">
+  <span>{{content}}</span>
+</div>
+<ng-template #todo>
+  <div class="singleTodo" *ngFor="let todo of arrayOfTodo" >
+    <mat-checkbox #checkbox></mat-checkbox>
+    <span [ngClass] = "{strikethrough: checkbox.checked}">{{todo}}</span>
+  </div>
+</ng-template>
+
+

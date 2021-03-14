@@ -12,12 +12,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatRippleModule } from '@angular/material/core'
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NotesComponent } from './notes/notes.component';
+import { NoteContentComponent } from './notes/note-content/note-content.component';
 
 
 
@@ -26,7 +28,8 @@ import { NotesComponent } from './notes/notes.component';
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    NotesComponent
+    NotesComponent,
+    NoteContentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { NotesComponent } from './notes/notes.component';
     MatListModule,
     MatTreeModule,
     MatExpansionModule,
-    MatRippleModule
+    MatRippleModule,
+    MatCheckboxModule
   ],
   providers: [CommunicationService],
   bootstrap: [AppComponent]
