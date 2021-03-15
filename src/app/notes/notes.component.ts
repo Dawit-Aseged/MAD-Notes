@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Todo } from './note.model';
 
 @Component({
   selector: 'app-notes',
@@ -8,7 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NotesComponent implements OnInit {
   @Input() title!: string;
   @Input() content!: string;
-  @Input() arrayOfTodo!: string[];
+  @Input() arrayOfTodo!: Todo[];
+
+  // Remove inputing title, content and todoList and input a Note itself
 
   noteTitle = "";
   noteContent = "";

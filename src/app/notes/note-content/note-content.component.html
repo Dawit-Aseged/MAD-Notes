@@ -1,10 +1,21 @@
-<div class="normalNote" *ngIf="!isTodo; else todo">
+<div class="normalNote" *ngIf="!isTodo; else showTodoList">
   <span>{{content}}</span>
 </div>
-<ng-template #todo>
-  <div class="singleTodo" *ngFor="let todo of arrayOfTodo" >
-    <mat-checkbox #checkbox></mat-checkbox>
-    <span [ngClass] = "{strikethrough: checkbox.checked}">{{todo}}</span>
+<ng-template #showTodoList>
+  <div class="singleTodo" *ngFor="let todo of todoList">
+    <div *ngIf="!todo.checked">
+      <mat-checkbox #checkbox (change)="toggleCheckbox(todo)"></mat-checkbox>
+      <span>{{todo.content}}</span>
+    </div>
+  </div>
+<mat-divider></mat-divider>
+  <div class="finishedTodo">
+    <div class="singleTodo" *ngFor="let todo of todoList">
+      <div *ngIf="todo.checked">
+        <mat-checkbox [checked]="true" (change)="toggleCheckbox(todo)"></mat-checkbox>
+        <span class="strikethrough">{{todo.content}}</span>
+      </div>
+    </div>
   </div>
 </ng-template>
 
