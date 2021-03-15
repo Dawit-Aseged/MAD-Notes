@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NotesComponent implements OnInit {
   @Input() title!: string;
   @Input() content!: string;
+  @Input() arrayOfTodo!: string[];
 
   noteTitle = "";
   noteContent = "";

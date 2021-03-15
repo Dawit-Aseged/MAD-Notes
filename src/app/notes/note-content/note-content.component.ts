@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-note-content',
@@ -7,22 +7,16 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
 })
 export class NoteContentComponent implements OnInit {
 
-  isTodo!: boolean;
+  isTodo: boolean = true;
   @Input() arrayOfTodo: string[] | undefined;
-  @Input() content: string = "Content Not Provided";
+  @Input() content: string | undefined;
   constructor() { }
 
   ngOnInit(): void {
-    // if(this.arrayOfTodo === undefined)
-    //   this.isTodo = false;
-    // this.isTodo = this.arrayOfTodo?.length != 0;
-
-    // console.log(this.isTodo)
-    // console.log(this.arrayOfTodo?.toString)
-
-    this.arrayOfTodo?.forEach(element => {
-
-    });
+    if(this.arrayOfTodo === undefined)
+      this.isTodo = false;
+    if(this.content === "" || this.content === undefined)
+      this.content = "Content Not Provided"
   }
 
 

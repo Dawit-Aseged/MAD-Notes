@@ -12,4 +12,9 @@ export class AppComponent {
   toggle() {
     this.expanded = true;
   }
+
+  todoList = [
+    "Todo 1",
+    "Todo 2"
+  ]
 }
