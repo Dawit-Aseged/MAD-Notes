@@ -1,11 +1,11 @@
 <div class="container">
   <div class="titlebar">
-    <span>{{noteTitle}}</span>
+    <span>{{note.title}}</span>
   </div>
   <div class="center">
     <div class="content">
       <span>
-        <app-note-content [content]="content" [todoList]="arrayOfTodo"></app-note-content>
+        <app-note-content [content]="note.content" [todoList]="note.todos"></app-note-content>
       </span>
     </div>
   </div>

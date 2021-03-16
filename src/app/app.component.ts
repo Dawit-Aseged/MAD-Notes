@@ -1,24 +1,23 @@
-import { Component } from '@angular/core';
-import { Todo } from './notes/note.model';
+import { CommunicationService } from './service/communication.service';
+import { Component, OnInit } from '@angular/core';
+import { Note, Todo } from './notes/note.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'MAD Notes';
+  noteList:Note[];
 
-  expanded = false;
-  toggle() {
-    this.expanded = true;
+
+  constructor(public commService: CommunicationService) {
+   this.noteList = commService.getNotes();
+
   }
 
-
-  todoList: Todo[] = [
-    {id: 1, content: "Todo 1", checked: false},
-    {id: 2, content: "Todo 2", checked: true},
-    {id: 3, content: "Todo 3", checked: false},
-
-  ]
+  ngOnInit() {
+    console.log(this.noteList)
+  }
 }

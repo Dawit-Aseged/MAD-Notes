@@ -1,6 +1,9 @@
-<div class="container">
-  <app-header></app-header>
-  <app-sidenav>
-    <app-notes title="This is the first title" [arrayOfTodo]="todoList"></app-notes>
-  </app-sidenav>
-</div>
+<app-header></app-header>
+<app-sidenav>
+  <div class="noteList">
+    <div *ngFor="let singleNote of noteList">
+      <app-notes [note]="singleNote"></app-notes>
+    </div>
+  </div>
+</app-sidenav>
+
