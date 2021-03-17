@@ -42,6 +42,20 @@ export class CommunicationService {
         id: 1,
         title: "First title",
         content: "This is the content inside the note"
+      },
+      {
+        id: 1,
+        title: "Second title",
+        todos: [
+          {id: 1, content: "Todo 4", checked: false},
+          {id: 2, content: "Todo 5", checked: true},
+          {id: 3, content: "Todo 6", checked: false},
+        ]
+      },
+      {
+        id: 1,
+        title: "First title",
+        content: "This is the content inside the note"
       }
     ]
 

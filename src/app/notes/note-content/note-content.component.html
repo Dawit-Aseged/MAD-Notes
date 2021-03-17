@@ -1,5 +1,7 @@
 <div class="normalNote" *ngIf="!isTodo; else showTodoList">
-  <span>{{content}}</span>
+  <div>
+    <span>{{content}}</span>
+  </div>
 </div>
 <ng-template #showTodoList>
   <div class="singleTodo" *ngFor="let todo of todoList">

@@ -1,4 +1,20 @@
 .noteList {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.noteListHandset {
+  flex-direction: column;
+}
+
+.noteListHandSet div{
+  display: flex;
+  align-content: center;
+}
+
+.noteContainer {
+  display: flex;
+  justify-content: center;
 }

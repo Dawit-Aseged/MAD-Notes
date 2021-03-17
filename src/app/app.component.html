@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-sidenav>
-  <div class="noteList">
-    <div *ngFor="let singleNote of noteList">
+  <div class="noteList" [ngClass] = "{noteListHandset: (isHandset | async)!.matches}">
+    <div *ngFor="let singleNote of noteList" class="noteContainer">
       <app-notes [note]="singleNote"></app-notes>
     </div>
   </div>
