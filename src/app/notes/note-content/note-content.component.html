@@ -4,13 +4,16 @@
   </div>
 </div>
 <ng-template #showTodoList>
-  <div class="singleTodo" *ngFor="let todo of todoList">
-    <div *ngIf="!todo.checked">
-      <mat-checkbox #checkbox (change)="toggleCheckbox(todo)"></mat-checkbox>
-      <span>{{todo.content}}</span>
+  <div class="unfinishedTodo">
+    <div class="singleTodo" *ngFor="let todo of todoList">
+      <div *ngIf="!todo.checked">
+        <mat-checkbox #checkbox (change)="toggleCheckbox(todo)"></mat-checkbox>
+        <span>{{todo.content}}</span>
+      </div>
     </div>
   </div>
-<mat-divider></mat-divider>
+<mat-divider class="divider"></mat-divider>
+
   <div class="finishedTodo">
     <div class="singleTodo" *ngFor="let todo of todoList">
       <div *ngIf="todo.checked">

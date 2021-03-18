@@ -1,3 +1,37 @@
 .strikethrough {
   text-decoration: line-through;
 }
+
+.divider{
+  margin-top: 15%;
+  margin-bottom: 10%;
+  border-color: black;
+}
+
+.singleTodo span {
+  color: green;
+  width: 90%;
+  word-wrap: break-word;
+
+
+}
+
+.singleTodo {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.singleTodo div {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+}
+
+mat-checkbox {
+  margin-right: 5px;
+
+}
+
+

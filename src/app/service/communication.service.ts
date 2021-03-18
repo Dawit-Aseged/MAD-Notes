@@ -33,6 +33,12 @@ export class CommunicationService {
         id: 1,
         title: "Second title",
         todos: [
+          {id: 1, content: "Todo 4 safsadf dsafsadf sadfsdfsdfd sfasdfa sdfasdfasdfdsaf", checked: false},
+          {id: 2, content: "Todo 5", checked: true},
+          {id: 3, content: "Todo 6", checked: false},
+          {id: 1, content: "Todo 4", checked: false},
+          {id: 2, content: "Todo 5", checked: true},
+          {id: 3, content: "Todo 6", checked: false},
           {id: 1, content: "Todo 4", checked: false},
           {id: 2, content: "Todo 5", checked: true},
           {id: 3, content: "Todo 6", checked: false},
@@ -41,7 +47,7 @@ export class CommunicationService {
       {
         id: 1,
         title: "First title",
-        content: "This is the content inside the note"
+        content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam dolorum odio doloremque error et, sequi consequatur repellendus numquam. Tempora fugiat maiores beatae quo soluta aliquam doloremque repellat ipsam id! Magni."
       },
       {
         id: 1,

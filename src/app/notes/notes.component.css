@@ -1,9 +1,9 @@
 .container {
 
   min-width: 250px;
+  max-width: 350px;;
   min-height: 300px;
   box-shadow: 0 0 5px black;
-
   border-radius: 10px;
   margin: 20px;
   display: inline-block;
