@@ -11,6 +11,7 @@ export class NotesComponent implements OnInit {
   @Input() note!: Note;
 
   constructor() {
+    // If the note is not defined then it sets up an placeholder note
     if (this.note === undefined) {
       this.note = {
         id: -1,
@@ -20,7 +21,7 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("ALSLSL" + this.note)
+
   }
 
 }

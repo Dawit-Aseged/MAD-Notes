@@ -28,7 +28,8 @@ export class NoteContentComponent implements OnInit {
 
   }
 
-
+  // This is used to change the property of the TODO once
+  // the checkbox insde the todo is changed
   toggleCheckbox(todo: Todo) {
     todo.checked = !todo.checked;
     // Make sure to propagate this to the server as well

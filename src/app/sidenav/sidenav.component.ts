@@ -19,11 +19,11 @@ interface TreeNode {
 })
 export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
    @ViewChild("drawer") drawer:MatDrawer | undefined;
-  // data: string = "";
-  // @Input() showSidenav: boolean = false ;
-  // showFiller = false;
+
+  // The following is to check if our device is in mobile view
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
 
+  // The following tree is used for the sidenav container for the Financial section
   treeControl = new NestedTreeControl<TreeNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<TreeNode>();
 
@@ -32,6 +32,7 @@ export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
     this.dataSource.data = TREE_DATA;
   }
 
+  // The following is used to ensure that the side navigation is actually closed
   sidenavClosed() {
     this.commService.expanded = false;
   }
@@ -44,6 +45,8 @@ export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
 
   }
 
+  // Used to set a common variable in our service that
+  // coordinates the opening and closing of our side navigation
   ngAfterViewInit(): void {
     this.drawer?.openedChange.subscribe((opened)=> {
       this.commService.expanded = opened;
@@ -52,6 +55,7 @@ export class SidenavComponent implements OnInit, AfterViewInit, OnChanges {
 
 }
 
+// This is the tree data that goes inside the side navigation
 const TREE_DATA = [
   {
     name: "Financial Activity",

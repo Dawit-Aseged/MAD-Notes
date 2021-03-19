@@ -11,11 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit{
   title = 'MAD Notes';
-  noteList:Note[];
+  noteList:Note[] | undefined;
+  // The following is to check if our device is in mobile view
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
 
 
   constructor(public commService: CommunicationService, public breakpointObserver: BreakpointObserver) {
+  // This fetches the notes
    this.noteList = commService.getNotes();
 
   }
