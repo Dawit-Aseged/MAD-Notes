@@ -20,6 +20,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { NotesComponent } from './notes/notes.component';
 import { NoteContentComponent } from './notes/note-content/note-content.component';
+import { NoteCreateComponent } from './notes/note-create/note-create.component';
 
 
 
@@ -29,7 +30,8 @@ import { NoteContentComponent } from './notes/note-content/note-content.componen
     HeaderComponent,
     SidenavComponent,
     NotesComponent,
-    NoteContentComponent
+    NoteContentComponent,
+    NoteCreateComponent
   ],
   imports: [
     BrowserModule,
