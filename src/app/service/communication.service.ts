@@ -1,16 +1,27 @@
 import { Note } from './../notes/note.model';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunicationService {
   private Notes!: Note[];
+  private newNoteChanged = new Subject<boolean>();
+
   constructor() { }
   public expanded = false;
+  public newNoteHidden = false;
 
-  toggleSidenav()  {
+  public hideNewNote(status: boolean) {
+    this.newNoteHidden = status;
+    this.newNoteChanged.next(status);
+  }
+
+  getNewNoteChangedListener() {
+    return this.newNoteChanged.asObservable();
+  }
+  public toggleSidenav()  {
     this.expanded = !this.expanded;
   }
 
