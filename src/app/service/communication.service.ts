@@ -14,6 +14,9 @@ export class CommunicationService {
   public newNoteHidden = false;
 
   public hideNewNote(status: boolean) {
+    if(status === false)
+      if(this.expanded == true)
+      this.expanded = false;
     this.newNoteHidden = status;
     this.newNoteChanged.next(status);
   }
@@ -22,7 +25,8 @@ export class CommunicationService {
     return this.newNoteChanged.asObservable();
   }
   public toggleSidenav()  {
-    this.expanded = !this.expanded;
+    if(this.newNoteHidden)
+      this.expanded = !this.expanded;
   }
 
   public getNotes() {
