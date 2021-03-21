@@ -1,5 +1,7 @@
 import { CommunicationService } from './../../service/communication.service';
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-note-create',
@@ -9,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class NoteCreateComponent implements OnInit {
 
   hidden = false;
-  constructor(public commService: CommunicationService) { }
+  isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
+
+  constructor(public commService: CommunicationService, public breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.commService.getNewNoteChangedListener()

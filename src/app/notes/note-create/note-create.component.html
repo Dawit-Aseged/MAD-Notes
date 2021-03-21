@@ -6,5 +6,17 @@
       (click)="closeClick()">
       <mat-icon>close</mat-icon>
     </button>
+    <div class="title-area">
+      <span class="textarea"
+        role="textbox"
+        contenteditable
+        [ngClass] = "{textareaHandheld: (isHandset | async)!.matches}"
+      ></span>
+      <!-- <textarea type="text" placeholder="Title" class="input"></textarea> -->
+    </div>
+
+    <div class="content-area">
+
+    </div>
   </div>
 </div>

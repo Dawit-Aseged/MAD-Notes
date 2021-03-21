@@ -13,6 +13,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatRippleModule } from '@angular/material/core'
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +47,8 @@ import { NoteCreateComponent } from './notes/note-create/note-create.component';
     MatTreeModule,
     MatExpansionModule,
     MatRippleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatInputModule
   ],
   providers: [CommunicationService],
   bootstrap: [AppComponent]
