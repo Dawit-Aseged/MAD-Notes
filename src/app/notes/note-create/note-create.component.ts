@@ -13,6 +13,9 @@ export class NoteCreateComponent implements OnInit {
   hidden = false;
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
 
+
+  titleHasFocus = false;
+  contentHasFocus = false;
   constructor(public commService: CommunicationService, public breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
@@ -25,5 +28,21 @@ export class NoteCreateComponent implements OnInit {
   closeClick(){
     this.commService.hideNewNote(true);
   }
+
+  elementOnFocus(element: string) {
+    if(element === "title")
+      this.titleHasFocus = true;
+    else
+      this.contentHasFocus = true;
+  }
+
+  elementOnFocusLeave(element: string) {
+    if (element === "title")
+      this.titleHasFocus = false;
+    else
+      this.contentHasFocus = false;
+  }
+
+  // Add a title length constraint of max 70 min 1 character(s)
 
 }

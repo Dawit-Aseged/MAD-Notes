@@ -12,7 +12,7 @@
 }
 
 .note {
-  width: 70%;
+  width: 40%;
   min-width: 300px;
   height: 75%;
   background-color: rgb(209, 209, 209);
@@ -22,10 +22,11 @@
   display: none;
 }
 
-.title-area {
+.title-area, .content-area {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 .input {
   width: 95%;
@@ -80,6 +81,27 @@
 }
 .textarea[contenteditable]:empty::before {
   content: "Enter Title";
-
   color: rgb(63, 81, 181);
 }
+
+
+.content-area .textarea {
+  min-height: 200px;
+}
+.content-area .textarea[contenteditable]:empty::before {
+  content: "Enter Content";
+  color: rgb(63, 81, 181);
+}
+
+.title-header, .content-header{
+  display: block;
+  opacity: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  transition: 0.4s;
+}
+
+.headerTransition {
+  opacity: 1;
+}
+
