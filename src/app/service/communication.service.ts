@@ -1,6 +1,7 @@
 import { Note } from './../notes/note.model';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
+import { HttpClient } from "@angular/common/http"
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,9 @@ import { Observable, of, Subject } from 'rxjs';
 export class CommunicationService {
   private Notes!: Note[];
   private newNoteChanged = new Subject<boolean>();
+  private notesUpdated = new Subject<Note[]>();
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
   public expanded = false;
   public newNoteHidden = false;
 
@@ -33,6 +35,9 @@ export class CommunicationService {
     // Here we should implement a way to fetch notes from our node backend.
     // But till then we will simply return a list of notes with junk data
 
+    // this.httpClient
+    //   .get('http://localhost:3000/api/posts')
+    //   .subscribe(())
 
     this.Notes = [
       {
