@@ -23,8 +23,13 @@ export class CommunicationService {
     this.newNoteChanged.next(status);
   }
 
+
   getNewNoteChangedListener() {
     return this.newNoteChanged.asObservable();
+  }
+
+  getNotesUpdates() {
+    return this.notesUpdated.asObservable();
   }
   public toggleSidenav()  {
     if(this.newNoteHidden)
@@ -39,7 +44,7 @@ export class CommunicationService {
     //   .get('http://localhost:3000/api/posts')
     //   .subscribe(())
 
-    this.Notes = [
+    const currentNotes = [
       {
         id: 1,
         title: "First title",
@@ -85,6 +90,8 @@ export class CommunicationService {
       }
     ]
 
-    return this.Notes;
+
+    this.Notes =  currentNotes;
+    this.notesUpdated.next([...this.Notes])
   }
 }
