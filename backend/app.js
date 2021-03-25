@@ -1,6 +1,24 @@
 const express = require('express');
 
 const app = express();
+const Note = require('./models/note');
+
+// The following is just dummy data to test mongoose
+// const newNote = {
+//   id: 1,
+//   title: "First title",
+//   todos: [
+//     {id: 1, content: "Todo 1", checked: false},
+//     {id: 2, content: "Todo 2", checked: true},
+//     {id: 3, content: "Todo 3", checked: false},
+//   ],
+//   color: {
+//     r: 63,
+//     g: 63,
+//     b: 63,
+//     a: 1
+//   }
+// }
 
 /*
  The following middleware is used to remove the restrictions

@@ -19,7 +19,6 @@ export class AppComponent implements OnInit, OnDestroy{
 
   constructor(public commService: CommunicationService, public breakpointObserver: BreakpointObserver) {
   // This fetches the notes
-  //this.noteList = this.commService.getNotes();
     this.noteSub = this.commService.getNotesUpdates()
     .subscribe((notes: Note[]) => {
         console.log("poop")
@@ -27,9 +26,9 @@ export class AppComponent implements OnInit, OnDestroy{
     })
   }
 
-ngOnInit() {
-  this.commService.getNotes();
-}
+  ngOnInit() {
+    this.commService.getNotes();
+  }
 
   ngOnDestroy() {
     this.noteSub.unsubscribe();
