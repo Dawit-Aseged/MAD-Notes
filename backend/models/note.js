@@ -1,31 +1,45 @@
 const mongoose = require("mongoose");
 
+const todoSchema = mongoose.Schema({
+  content: String,
+  checked: {type: Boolean, default: false}
+})
 const noteSchema = mongoose.Schema({
-  title: String,
-  content: {
-    // Content is required if the number of Todo's is zero
-    type: String, required: function() {
-      return this.todos.length == 0
+  title: {
+    type: String,
+    // The following validator returns an error if the title length is more than 1000 characters.
+    validate: {
+      validator:
+        function (inputString) {
+          return inputString.length < 1000;
+        },
+      message: "Title too long"
     }
   },
-  todos: [{
-    // Todo's are required if the content is an empty string or is undefined
-    type: mongoose.Schema.Types.ObjectId,
-    required: function() {
-      return (this.content === "" || this.content === undefined)
-    },
-    content: String,
-    checked: {type: Boolean, default: false}
-  }],
-  dateCreated: {type: Date, default: Date.now()},
-  lastUpdated: {type: Date, default: Date.now()},
+  content: {
+    type: String,
+    // The following validator returns an error if the content length is more than 20000 characters.
+    validate: {
+      validator:
+        function (inputString) {
+          return inputString.length < 20000;
+        },
+      message: "Content too long"
+    }
+  },
+  todos: [todoSchema], // List of Todos - from the above schema
+  dateCreated: {type: Date, default: Date.now()}, // The date it was created
+  lastUpdated: {type: Date, default: Date.now()}, // The date it was updated (will be changed regularly)
+
+  // The following is the color in rgba() form
   color: {
     r: Number,
     g: Number,
     b: Number,
-    a: Number,
-
+    a: Number
   },
+
+  // This is to check if the note is to be pinned or not
   pinned: {type: Boolean, default: false}
 })
 
