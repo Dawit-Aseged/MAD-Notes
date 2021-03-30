@@ -33,10 +33,10 @@ const noteSchema = mongoose.Schema({
 
   // The following is the color in rgba() form
   color: {
-    r: {type: Number, default: 54} ,
-    g: {type: Number, default: 54},
-    b: {type: Number, default: 54},
-    a: {type: Number, default: 1}
+    r: {type: Number, default: 54, min: 0, max: 255} ,
+    g: {type: Number, default: 54, min: 0, max: 255},
+    b: {type: Number, default: 54, min: 0, max: 255},
+    a: {type: Number, default: 1, min: 0, max: 255}
   },
 
   // This is to check if the note is to be pinned or not
