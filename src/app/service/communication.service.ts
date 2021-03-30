@@ -2,6 +2,7 @@ import { Note } from './../notes/note.model';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { HttpClient } from "@angular/common/http"
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -40,58 +41,25 @@ export class CommunicationService {
     // Here we should implement a way to fetch notes from our node backend.
     // But till then we will simply return a list of notes with junk data
 
-    // this.httpClient
-    //   .get('http://localhost:3000/api/posts')
-    //   .subscribe(())
+    this.httpClient
+      .get<{message: string, notes: any}>('http://localhost:3000/api/notes')
+      .pipe(map((noteData) => {
+        return noteData.notes.map((note: any) => {
+          return {
+            id: note._id,
+            title: note.title,
+            content: note.content,
+            todos: note.todos,
+            dateCreated: note.dateCreated,
+            lastUpdated: note.lastUpdated,
+            color: note.color
+          }
+        })
+      }))
+      .subscribe((transformedNotes) => {
+        this.Notes = transformedNotes;
+        this.notesUpdated.next([...this.Notes])
+      })
 
-    const currentNotes = [
-      {
-        id: 1,
-        title: "First title",
-        todos: [
-          {id: 1, content: "Todo 1", checked: false},
-          {id: 2, content: "Todo 2", checked: true},
-          {id: 3, content: "Todo 3", checked: false},
-        ]
-      },
-      {
-        id: 1,
-        title: "Second title",
-        todos: [
-          {id: 1, content: "Todo 4 safsadf dsafsadf sadfsdfsdfd sfasdfa sdfasdfasdfdsaf", checked: false},
-          {id: 2, content: "Todo 5", checked: true},
-          {id: 3, content: "Todo 6", checked: false},
-          {id: 1, content: "Todo 4", checked: false},
-          {id: 2, content: "Todo 5", checked: true},
-          {id: 3, content: "Todo 6", checked: false},
-          {id: 1, content: "Todo 4", checked: false},
-          {id: 2, content: "Todo 5", checked: true},
-          {id: 3, content: "Todo 6", checked: false},
-        ]
-      },
-      {
-        id: 1,
-        title: "First title",
-        content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam dolorum odio doloremque error et, sequi consequatur repellendus numquam. Tempora fugiat maiores beatae quo soluta aliquam doloremque repellat ipsam id! Magni."
-      },
-      {
-        id: 1,
-        title: "Second title",
-        todos: [
-          {id: 1, content: "Todo 4", checked: false},
-          {id: 2, content: "Todo 5", checked: true},
-          {id: 3, content: "Todo 6", checked: false},
-        ]
-      },
-      {
-        id: 1,
-        title: "First title",
-        content: "This is the content inside the note"
-      }
-    ]
-
-
-    this.Notes =  currentNotes;
-    this.notesUpdated.next([...this.Notes])
   }
 }

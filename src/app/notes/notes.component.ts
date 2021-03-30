@@ -15,7 +15,15 @@ export class NotesComponent implements OnInit {
     if (this.note === undefined) {
       this.note = {
         id: -1,
-        title: "No Note"
+        title: "No Note",
+        dateCreated: new Date(Date.now()),
+        lastUpdated: new Date(Date.now()),
+        color: {
+          r: 54,
+          g: 54,
+          b: 54,
+          a: 1
+        }
       };
     }
   }
