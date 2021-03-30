@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const todoSchema = mongoose.Schema({
-  content: String,
+  content: {type: String, required: true},
   checked: {type: Boolean, default: false}
 })
 const noteSchema = mongoose.Schema({
@@ -22,7 +22,7 @@ const noteSchema = mongoose.Schema({
     validate: {
       validator:
         function (inputString) {
-          return inputString.length < 20000;
+          return inputString.length <= 20000;
         },
       message: "Content too long"
     }
@@ -33,10 +33,10 @@ const noteSchema = mongoose.Schema({
 
   // The following is the color in rgba() form
   color: {
-    r: Number,
-    g: Number,
-    b: Number,
-    a: Number
+    r: {type: Number, default: 54} ,
+    g: {type: Number, default: 54},
+    b: {type: Number, default: 54},
+    a: {type: Number, default: 1}
   },
 
   // This is to check if the note is to be pinned or not
