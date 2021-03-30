@@ -2,6 +2,7 @@ const express = require("express");
 
 const app = express();
 const Note = require("./models/note");
+const mongoose = require("mongoose");
 
 function checkErrorNote(res, note) {
   // The following block of code returns true if both Note.content and Note.todos are not set
@@ -17,11 +18,17 @@ function checkErrorNote(res, note) {
     };
 
   if (error !== undefined) res.status(400).json(error);
-
+  // The following validates all the schema validators
   error = note.validateSync();
   if (error !== undefined) res.status(400).json(error);
 }
-
+mongoose.connect("mongodb://127.0.0.1:27017/mad-notes", { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {
+    console.log("Connection to database :- Success ")
+  })
+  .catch(() => {
+    console.log("Connection to database :- Failure ")
+  });
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -52,8 +59,16 @@ app.post("/api/note", (req, res, next) => {
     color: req.body.color,
   });
 
+  // This checks for errors and sends a 400 response if any error is found
   checkErrorNote(res, newNote);
-  res.status(200).json(newNote);
+  newNote.save().then(createdNote => {
+    res.status(200).json({
+      message: "Note saved successfully",
+      noteId: createdNote._id
+    })
+  }).catch(e => {
+    res.status(400).send(e);
+  })
 });
 
 // This is created to test if the mongoose schema works correctly
