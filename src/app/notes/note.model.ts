@@ -8,5 +8,8 @@ export interface Note {
   id: number;
   title: string;
   content?: string;
-  todos?: Todo[]
+  todos?: Todo[];
+  dateCreated: Date;
+  lastUpdated: Date;
+  color: {r: Number, g: Number, b: Number, a: Number}
 }
