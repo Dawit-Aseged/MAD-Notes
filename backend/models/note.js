@@ -7,6 +7,7 @@ const todoSchema = mongoose.Schema({
 const noteSchema = mongoose.Schema({
   title: {
     type: String,
+    required: true,
     // The following validator returns an error if the title length is more than 1000 characters.
     validate: {
       validator:
