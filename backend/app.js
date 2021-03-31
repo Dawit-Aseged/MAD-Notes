@@ -101,7 +101,7 @@ app.get("/api/notes", (req, res, next) => {
       notes: null
     });
   });
-
 });
+
 
 module.exports = app;

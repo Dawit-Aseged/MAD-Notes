@@ -57,6 +57,7 @@ export class CommunicationService {
         })
       }))
       .subscribe((transformedNotes) => {
+
         this.Notes = transformedNotes;
         this.notesUpdated.next([...this.Notes])
       })

@@ -19,7 +19,6 @@ export class NoteContentComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.todoList);
     if(this.todoList === undefined)
       this.isTodo = false;
     if(this.content === "" || this.content === undefined)

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +23,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { NotesComponent } from './notes/notes.component';
 import { NoteContentComponent } from './notes/note-content/note-content.component';
 import { NoteCreateComponent } from './notes/note-create/note-create.component';
+import { MdbModule } from 'mdb-angular-ui-kit';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -32,7 +35,8 @@ import { NoteCreateComponent } from './notes/note-create/note-create.component';
     SidenavComponent,
     NotesComponent,
     NoteContentComponent,
-    NoteCreateComponent
+    NoteCreateComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ import { NoteCreateComponent } from './notes/note-create/note-create.component';
     MatExpansionModule,
     MatRippleModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MdbModule,
+
   ],
   providers: [CommunicationService],
   bootstrap: [AppComponent]
