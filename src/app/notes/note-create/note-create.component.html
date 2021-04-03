@@ -1,44 +1,12 @@
-<div class="container" [ngClass] = "{hiddenClass: hidden}">
-  <div class="note">
-    <button
-      mat-icon-button
-      aria-label="Close Button"
-      (click)="closeClick()">
-      <mat-icon>close</mat-icon>
-    </button>
-    <div class="title-area">
-      <span
-        #title
-        class="title-header"
-        [ngClass] = "{headerTransition: titleHasFocus}">
-        Title</span>
-      <span class="textarea"
-        role="textbox"
-        contenteditable
-        [ngClass] = "{textareaHandheld: (isHandset | async)!.matches}"
-        (focus)="elementOnFocus('title')"
-        (focusout)="elementOnFocusLeave('title')"
-        >
-      </span>
-    </div>
-    <div class="content-area">
-      <span
-        class="content-header"
-        [ngClass] = "{headerTransition: contentHasFocus}">
-        Content</span>
-      <span class="textarea"
-        role="textbox"
-        contenteditable
-        [ngClass] = "{textareaHandheld: (isHandset | async)!.matches}"
-        (focus)="elementOnFocus('content')"
-        (focusout)="elementOnFocusLeave('content')">
-      </span>
-    </div>
-      <!-- <textarea type="text" placeholder="Title" class="input"></textarea> -->
-
-    <div class="content-area">
-
-    </div>
-  </div>
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field>
 </div>
-
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

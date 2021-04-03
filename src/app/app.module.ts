@@ -13,7 +13,9 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatRippleModule } from '@angular/material/core'
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,9 +51,14 @@ import { NoteCreateComponent } from './notes/note-create/note-create.component';
     MatExpansionModule,
     MatRippleModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatFormFieldModule
   ],
-  providers: [CommunicationService],
+  providers: [CommunicationService,
+  	{ provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

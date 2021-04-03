@@ -14,7 +14,7 @@ export class CommunicationService {
 
   constructor(private httpClient: HttpClient) { }
   public expanded = false;
-  public newNoteHidden = false;
+  public newNoteHidden = true;
 
   public hideNewNote(status: boolean) {
     if(status === false)
@@ -33,6 +33,7 @@ export class CommunicationService {
     return this.notesUpdated.asObservable();
   }
   public toggleSidenav()  {
+
     if(this.newNoteHidden)
       this.expanded = !this.expanded;
   }
