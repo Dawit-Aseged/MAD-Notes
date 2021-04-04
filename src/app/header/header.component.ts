@@ -9,8 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  title: string;
+  content: string;
 }
 
 
@@ -36,8 +36,9 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  animal!: string;
-  name!: string;
+  title!: string;
+  content!: string;
+  information!: DialogData;
   addNewNote() {
     this.commService.hideNewNote(false);
   }
@@ -46,12 +47,13 @@ export class HeaderComponent implements OnInit {
     this.commService.hideNewNote(false);
     const dialogRef = this.dialog.open(NoteCreateComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      height: "300px",
+      data: {title: this.title, content: this.content}
     });
 
-    dialogRef.afterClosed().subscribe((result: string) => {
-      console.log('The dialog was closed');
-      this.animal = result;
+    dialogRef.afterClosed().subscribe((result: DialogData) => {
+      console.log(result);
+      this.information = result;
       this.commService.hideNewNote(true);
     });
   }
