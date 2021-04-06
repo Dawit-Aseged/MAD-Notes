@@ -104,4 +104,26 @@ app.get("/api/notes", (req, res, next) => {
 
 });
 
+function fetchFromDB() {
+  const data = [];
+
+  data.push({
+    title: "News 1",
+    content: "News Content 1"
+  });
+  data.push({
+    title: "News 2",
+    content: "News Content 2"
+  });
+  data.push({
+    title: "News 3",
+    content: "News Content 3"
+  });
+  return data;
+}
+
+app.get("/api/newslatest", (req, res, next) => {
+  res.status(200).json(fetchFromDB());
+});
+
 module.exports = app;

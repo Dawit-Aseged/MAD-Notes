@@ -1,16 +1,17 @@
 <h1 mat-dialog-title>New Note</h1>
 <div mat-dialog-content>
 
-  <mat-form-field>
+
+  <mat-form-field id="title">
     <mat-label>Title</mat-label>
     <input matInput [(ngModel)]="data.title">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Content</mat-label>
-    <input matInput [(ngModel)]="data.content">
+    <textarea matInput [(ngModel)]="data.content"></textarea>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-raised-button color="warn" (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
 </div>

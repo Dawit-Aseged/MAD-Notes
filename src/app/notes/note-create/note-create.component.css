@@ -105,3 +105,12 @@
   opacity: 1;
 }
 
+mat-form-field {
+  width: 100%;
+}
+
+textarea {
+  min-height: 6em;
+  resize: vertical;
+  max-height: 9em;
+}

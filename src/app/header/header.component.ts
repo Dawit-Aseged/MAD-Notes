@@ -46,12 +46,13 @@ export class HeaderComponent implements OnInit {
   openDialog(): void {
     this.commService.hideNewNote(false);
     const dialogRef = this.dialog.open(NoteCreateComponent, {
-      width: '250px',
-      height: "300px",
+      width: '500px',
+      height: "400px",
       data: {title: this.title, content: this.content}
     });
 
     dialogRef.afterClosed().subscribe((result: DialogData) => {
+      // Result could be undefined based on how it is closed
       console.log(result);
       this.information = result;
       this.commService.hideNewNote(true);
