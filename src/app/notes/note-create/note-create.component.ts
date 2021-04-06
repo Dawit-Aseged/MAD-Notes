@@ -13,12 +13,17 @@ export interface DialogData {
 })
 export class NoteCreateComponent {
 
+  isTodo = true;
   constructor(
     public dialogRef: MatDialogRef<NoteCreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  checkChanged(input: HTMLInputElement) {
+    input.classList.toggle("strikethrough")
   }
 
 }

@@ -109,6 +109,20 @@ mat-form-field {
   width: 100%;
 }
 
+#todo {
+  width: 90%;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+.todoList {
+  display: flex;
+  justify-content: space-between;
+}
+mat-checkbox {
+  align-self: center;
+}
 textarea {
   min-height: 6em;
   resize: vertical;
