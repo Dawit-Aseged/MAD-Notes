@@ -1,5 +1,6 @@
-import {Component, Inject} from '@angular/core';
+import { Component, Inject, EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatSelectChange } from '@angular/material/select';
 
 export interface DialogData {
   title: string;
@@ -13,7 +14,11 @@ export interface DialogData {
 })
 export class NoteCreateComponent {
 
-  isTodo = true;
+  noteOptions = [
+    {type: "Note", id: 1},
+    {type: "Todo", id: 2}
+  ]
+  isTodo = false;
   constructor(
     public dialogRef: MatDialogRef<NoteCreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
@@ -26,4 +31,10 @@ export class NoteCreateComponent {
     input.classList.toggle("strikethrough")
   }
 
+  selectChanged(event: MatSelectChange) {
+    if(event.value == 1)
+      this.isTodo = false;
+    else
+      this.isTodo = true;
+  }
 }

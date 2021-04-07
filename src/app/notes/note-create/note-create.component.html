@@ -1,6 +1,19 @@
 <h1 mat-dialog-title>New Note</h1>
-<div mat-dialog-content [ngClass]= "{todoList: isTodo}">
+<mat-form-field appearance="fill">
+  <mat-label>Select Type</mat-label>
+  <mat-select #select (selectionChange)="selectChanged($event);">
+    <mat-option *ngFor="let option of noteOptions" [value]="option.id">
+      {{option.type}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
+
+<div *ngIf="select.value == undefined; else typeChosen">
+  <h2>Choose a type</h2>
+</div>
+<ng-template #typeChosen>
+<div mat-dialog-content [ngClass]= "{todoList: isTodo}">
   <div *ngIf="!isTodo; else showTodo">
     <mat-form-field>
       <mat-label>Title</mat-label>
@@ -27,3 +40,4 @@
   <button mat-raised-button color="warn" (click)="onNoClick()">No Thanks</button>
   <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
 </div>
+</ng-template>
