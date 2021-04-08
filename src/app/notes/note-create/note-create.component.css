@@ -118,7 +118,7 @@ mat-form-field {
 }
 .todoList {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 mat-checkbox {
   align-self: center;
@@ -127,4 +127,10 @@ textarea {
   min-height: 6em;
   resize: vertical;
   max-height: 9em;
+}
+
+.singleTodo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

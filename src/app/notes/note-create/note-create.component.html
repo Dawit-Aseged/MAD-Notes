@@ -1,43 +1,69 @@
 <h1 mat-dialog-title>New Note</h1>
 <mat-form-field appearance="fill">
   <mat-label>Select Type</mat-label>
-  <mat-select #select (selectionChange)="selectChanged($event);">
+  <mat-select #select (selectionChange)="selectChanged($event)">
     <mat-option *ngFor="let option of noteOptions" [value]="option.id">
-      {{option.type}}
+      {{ option.type }}
     </mat-option>
   </mat-select>
 </mat-form-field>
-
 
 <div *ngIf="select.value == undefined; else typeChosen">
   <h2>Choose a type</h2>
 </div>
 <ng-template #typeChosen>
-<div mat-dialog-content [ngClass]= "{todoList: isTodo}">
-  <div *ngIf="!isTodo; else showTodo">
-    <mat-form-field>
-      <mat-label>Title</mat-label>
-      <input matInput [(ngModel)]="data.title">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Content</mat-label>
-      <textarea matInput [(ngModel)]="data.content"></textarea>
-    </mat-form-field>
+  <div mat-dialog-content [ngClass]="{ todoList: isTodo }">
+    <div *ngIf="!isTodo; else showTodo">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="data.title" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Content</mat-label>
+        <textarea matInput [(ngModel)]="data.content"></textarea>
+      </mat-form-field>
+    </div>
+
+    <ng-template #showTodo>
+      <div class="singleTodo" *ngFor="let todo of todoList; last as isLast">
+        <mat-checkbox #checkBox [(ngModel)]="todo.checked"></mat-checkbox>
+
+        <mat-form-field id="todo">
+          <mat-label>Todo List</mat-label>
+          <ng-container *ngIf="!isLast">
+            <input
+              matInput
+              [(ngModel)]="todo.content"
+              [ngClass]="{ strikethrough: checkBox.checked }"
+              (keydown.enter)="enterClicked()"
+            />
+          </ng-container>
+
+          <ng-container *ngIf="isLast">
+            <input
+              matInput
+              [(ngModel)]="todo.content"
+              [ngClass]="{ strikethrough: checkBox.checked }"
+              (keydown.enter)="enterClicked()"
+              #lastElement
+            />
+            {{ lastElement.focus() }}
+          </ng-container>
+        </mat-form-field>
+      </div>
+    </ng-template>
   </div>
-
-  <ng-template #showTodo >
-
-
-    <mat-checkbox  (change)="checkChanged(todoInput)"></mat-checkbox>
-
-    <mat-form-field id="todo">
-      <mat-label>Todo List</mat-label>
-      <input matInput #todoInput>
-    </mat-form-field>
-  </ng-template>
-</div>
-<div mat-dialog-actions>
-  <button mat-raised-button color="warn" (click)="onNoClick()">No Thanks</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
-</div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onNoClick()">
+      No, Thanks
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial
+    >
+      Ok
+    </button>
+  </div>
 </ng-template>
