@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: DialogData) => {
       // Result could be undefined based on how it is closed
       this.information = result;
+      console.log(result);
       this.commService.hideNewNote(true);
     });
   }

@@ -1,4 +1,4 @@
-<div class="header-region">
+<div class="header-region" [ngClass] = "{headerRegionHandheld: (isHandset | async)!.matches}">
   <h1>New Note</h1>
   <mat-form-field appearance="fill" >
     <mat-label>Select Type</mat-label>
@@ -48,6 +48,7 @@
               (keydown.enter)="enterClicked()"
               #lastElement
             />
+            <!-- Focus doesnt work because it forces focus to the last element -->
             {{ lastElement.focus() }}
           </ng-container>
         </mat-form-field>
