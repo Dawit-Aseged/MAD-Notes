@@ -11,10 +11,15 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+
+
 
 export interface DialogData {
   title: string;
-  content: string;
+  content?: string;
+  todo?: [{content: string, checked: boolean}]
 }
 
 @Component({
@@ -28,12 +33,15 @@ export class NoteCreateComponent {
     { type: 'Todo', id: 2 },
   ];
 
+  isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
+
   // This is the array that temporarily holds the todos. It is initialized as an empty todo
-  todoList = [{ content: '', checked: false }];
+  // todoList = [{ content: '', checked: false }];
   isTodo = false;
   constructor(
     public dialogRef: MatDialogRef<NoteCreateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    private breakpointObserver: BreakpointObserver,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) { }
 
   // The following occurs when the button "No Thanks" is pressed
@@ -44,12 +52,21 @@ export class NoteCreateComponent {
   // This occurs when the user changes the type of note (Either Note or Todo)
   selectChanged(event: MatSelectChange) {
     if (event.value == 1) this.isTodo = false;
-    else this.isTodo = true;
+    else {
+      this.isTodo = true;
+      if(this.data.todo == undefined)
+      this.data["todo"] = [{
+        content: '',
+        checked: false,
+      }]
+      console.log(this.data)
+      // if(this.data.todo!.length == )
+    }
   }
 
   //This creates a new todo when enter is clicked
   enterClicked() {
-    this.todoList.push({
+    this.data.todo!.push({
       content: '',
       checked: false,
     });

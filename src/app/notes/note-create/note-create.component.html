@@ -1,13 +1,14 @@
-<h1 mat-dialog-title>New Note</h1>
-<mat-form-field appearance="fill">
-  <mat-label>Select Type</mat-label>
-  <mat-select #select (selectionChange)="selectChanged($event)">
-    <mat-option *ngFor="let option of noteOptions" [value]="option.id">
-      {{ option.type }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
+<div class="header-region">
+  <h1>New Note</h1>
+  <mat-form-field appearance="fill" >
+    <mat-label>Select Type</mat-label>
+    <mat-select #select (selectionChange)="selectChanged($event)">
+      <mat-option *ngFor="let option of noteOptions" [value]="option.id">
+        {{ option.type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div *ngIf="select.value == undefined; else typeChosen">
   <h2>Choose a type</h2>
 </div>
@@ -25,7 +26,7 @@
     </div>
 
     <ng-template #showTodo>
-      <div class="singleTodo" *ngFor="let todo of todoList; last as isLast">
+      <div class="singleTodo" *ngFor="let todo of data.todo; last as isLast">
         <mat-checkbox #checkBox [(ngModel)]="todo.checked"></mat-checkbox>
 
         <mat-form-field id="todo">

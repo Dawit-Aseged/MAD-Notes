@@ -134,3 +134,26 @@ textarea {
   display: flex;
   justify-content: space-between;
 }
+
+.header-region {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.header-region mat-form-field {
+  width: 50%;
+}
+
+.header-region h1 {
+  margin-top: 10px;
+}
+
+.headerRegionHandheld {
+  flex-direction: column !important;
+}
+.select-handheld {
+  width: 100%;
+}
+
+
