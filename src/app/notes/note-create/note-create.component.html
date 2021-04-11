@@ -1,6 +1,9 @@
-<div class="header-region" [ngClass] = "{headerRegionHandheld: (isHandset | async)!.matches}">
+<div
+  class="header-region"
+  [ngClass]="{ headerRegionHandheld: (isHandset | async)!.matches }"
+>
   <h1>New Note</h1>
-  <mat-form-field appearance="fill" >
+  <mat-form-field appearance="fill">
     <mat-label>Select Type</mat-label>
     <mat-select #select (selectionChange)="selectChanged($event)">
       <mat-option *ngFor="let option of noteOptions" [value]="option.id">
@@ -26,32 +29,24 @@
     </div>
 
     <ng-template #showTodo>
-      <div class="singleTodo" *ngFor="let todo of data.todo; last as isLast">
-        <mat-checkbox #checkBox [(ngModel)]="todo.checked"></mat-checkbox>
+      <div class="todoElements" #todos>
+        <div class="singleTodo" *ngFor="let todo of data.todo; last as isLast">
+          <mat-checkbox #checkBox [(ngModel)]="todo.checked"></mat-checkbox>
 
-        <mat-form-field id="todo">
-          <mat-label>Todo List</mat-label>
-          <ng-container *ngIf="!isLast">
+          <mat-form-field id="todo">
+            <mat-label>Todo List</mat-label>
+
             <input
               matInput
               [(ngModel)]="todo.content"
               [ngClass]="{ strikethrough: checkBox.checked }"
-              (keydown.enter)="enterClicked()"
+              (keydown.enter)="enterClicked(todos)"
+              #todoInput
+              [id]="isLast ? 'lastElement' : 'notLast'"
             />
-          </ng-container>
 
-          <ng-container *ngIf="isLast">
-            <input
-              matInput
-              [(ngModel)]="todo.content"
-              [ngClass]="{ strikethrough: checkBox.checked }"
-              (keydown.enter)="enterClicked()"
-              #lastElement
-            />
-            <!-- Focus doesnt work because it forces focus to the last element -->
-            {{ lastElement.focus() }}
-          </ng-container>
-        </mat-form-field>
+          </mat-form-field>
+        </div>
       </div>
     </ng-template>
   </div>

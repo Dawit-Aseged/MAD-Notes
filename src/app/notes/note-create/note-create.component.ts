@@ -1,9 +1,12 @@
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import {
   Component,
   Inject,
   EventEmitter,
   ViewChild,
   ElementRef,
+  ViewChildren,
+  TemplateRef,
 } from '@angular/core';
 import {
   MatDialog,
@@ -32,6 +35,8 @@ export class NoteCreateComponent {
     { type: 'Note', id: 1 },
     { type: 'Todo', id: 2 },
   ];
+
+  @ViewChildren('showTodo') todoElementRef!: ElementRef;
 
   isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
 
@@ -65,10 +70,17 @@ export class NoteCreateComponent {
   }
 
   //This creates a new todo when enter is clicked
-  enterClicked() {
+  enterClicked(input: HTMLDivElement) {
     this.data.todo!.push({
       content: '',
       checked: false,
     });
+
+    // The following ensures that the new element is focused on after it is created
+    setTimeout(() => {
+      input.querySelector<HTMLInputElement>("#lastElement")!.focus();
+    }, 0)
   }
+
+
 }
