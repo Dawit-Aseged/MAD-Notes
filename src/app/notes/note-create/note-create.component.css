@@ -124,7 +124,7 @@ mat-checkbox {
   align-self: center;
 }
 textarea {
-  min-height: 6em;
+  min-height: 5.5em;
   resize: vertical;
   max-height: 9em;
 }

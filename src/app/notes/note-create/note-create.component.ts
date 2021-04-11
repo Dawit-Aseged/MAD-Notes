@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 export interface DialogData {
   title: string;
   content?: string;
-  todo?: [{content: string, checked: boolean}]
+  todo?: [{_id: number, content: string, checked: boolean}]
 }
 
 @Component({
@@ -61,20 +61,30 @@ export class NoteCreateComponent {
       this.isTodo = true;
       if(this.data.todo == undefined)
       this.data["todo"] = [{
+        _id: -1,
         content: '',
         checked: false,
       }]
-      console.log(this.data)
       // if(this.data.todo!.length == )
     }
+      setTimeout(() =>{
+        if(this.isTodo)
+          document.querySelector<HTMLInputElement>("#titleTodo")!.focus();
+        else
+          document.querySelector<HTMLInputElement>("#titleNote")!.focus();
+      }, 10)
+
   }
 
   //This creates a new todo when enter is clicked
-  enterClicked(input: HTMLDivElement) {
-    this.data.todo!.push({
-      content: '',
-      checked: false,
-    });
+  enterClicked(input: HTMLDivElement, todoInput: HTMLInputElement) {
+    if (todoInput.value != "" && todoInput.value != undefined) {
+      this.data.todo!.push({
+        _id: -1,
+        content: '',
+        checked: false,
+      });
+    }
 
     // The following ensures that the new element is focused on after it is created
     setTimeout(() => {

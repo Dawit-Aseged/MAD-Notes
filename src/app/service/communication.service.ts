@@ -1,4 +1,4 @@
-import { Note } from './../notes/note.model';
+import { Note, Todo } from './../notes/note.model';
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { HttpClient } from "@angular/common/http"
@@ -39,12 +39,11 @@ export class CommunicationService {
   }
 
   public getNotes() {
-    // Here we should implement a way to fetch notes from our node backend.
-    // But till then we will simply return a list of notes with junk data
+
 
     this.httpClient
       .get<{message: string, notes: any}>('http://localhost:3000/api/notes')
-      .pipe(map((noteData) => {
+      .pipe(map((noteData) => { // We map them to ensure that the data is correctly displayed (id != _id)
         return noteData.notes.map((note: any) => {
           return {
             id: note._id,
@@ -62,5 +61,33 @@ export class CommunicationService {
         this.notesUpdated.next([...this.Notes])
       })
 
+  }
+
+  public sendNotes (title: string, content?: string, todos?: [{_id: number, content: string, checked: boolean}] ) {
+    const Note: Note = {
+      id: -1,
+      title: title,
+      content: content,
+      todos: todos,
+      dateCreated: new Date(),
+      lastUpdated: new Date(),
+      color: {r: 54, g: 54, b: 54, a: 1}
+    }
+    console.log("Notessssss")
+    console.log(Note)
+    this.httpClient
+      .post<{error: number, message: string, value: any}>('http://localhost:3000/api/note', Note)
+      .subscribe((responseData) => {
+        if(responseData.error == 0) {
+          Note.id = responseData.value.id;
+          Note.dateCreated = responseData.value.dateCreated;
+          Note.lastUpdated = responseData.value.lastUpdated;
+          Note.color = responseData.value.color;
+          Note.todos = responseData.value.todos;
+          this.Notes.push(Note);
+          this.notesUpdated.next([...this.Notes])
+        }
+        console.log(responseData.message);
+      })
   }
 }

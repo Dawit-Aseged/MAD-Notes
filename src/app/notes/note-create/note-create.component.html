@@ -18,9 +18,9 @@
 <ng-template #typeChosen>
   <div mat-dialog-content [ngClass]="{ todoList: isTodo }">
     <div *ngIf="!isTodo; else showTodo">
-      <mat-form-field>
+      <mat-form-field color="accent">
         <mat-label>Title</mat-label>
-        <input matInput [(ngModel)]="data.title" />
+        <input matInput [(ngModel)]="data.title" id="titleNote"/>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Content</mat-label>
@@ -30,6 +30,14 @@
 
     <ng-template #showTodo>
       <div class="todoElements" #todos>
+        <mat-form-field  color="accent">
+          <mat-label>Title</mat-label>
+          <input
+          matInput
+          [(ngModel)]="data.title"
+          id="titleTodo"
+          />
+        </mat-form-field>
         <div class="singleTodo" *ngFor="let todo of data.todo; last as isLast">
           <mat-checkbox #checkBox [(ngModel)]="todo.checked"></mat-checkbox>
 
@@ -40,7 +48,7 @@
               matInput
               [(ngModel)]="todo.content"
               [ngClass]="{ strikethrough: checkBox.checked }"
-              (keydown.enter)="enterClicked(todos)"
+              (keydown.enter)="enterClicked(todos, todoInput)"
               #todoInput
               [id]="isLast ? 'lastElement' : 'notLast'"
             />

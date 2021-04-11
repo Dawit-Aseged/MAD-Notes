@@ -11,16 +11,23 @@ function checkErrorNote(res, note) {
     (note.content === undefined || note.content === "") &&
     (note.todos === undefined || note.todos.length == 0)
   )
-    error = {
-      message: "Either content of note or a todo list (1 or more) is required",
-      type: "uselessNoteError",
-      code: 1,
-    };
+  error = {
+    message: "Either content of note or a todo list (1 or more) is required",
+    type: "uselessNoteError",
+    code: 1,
+  };
 
-  if (error !== undefined) res.status(400).json(error);
+  if (error !== undefined){
+    res.status(400).json(error);
+    return error;
+  }
   // The following validates all the schema validators
   error = note.validateSync();
-  if (error !== undefined) res.status(400).json(error);
+  if (error !== undefined) {
+    res.status(400).json(error);
+    return error;
+  }
+
 }
 mongoose.connect("mongodb://127.0.0.1:27017/mad-notes", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
@@ -59,34 +66,31 @@ app.post("/api/note", (req, res, next) => {
     color: req.body.color,
   });
 
+  console.log();
+  console.log();
+  console.dir("Todos->" + req.body.title)
+  console.log()
   // This checks for errors and sends a 400 response if any error is found
-  checkErrorNote(res, newNote);
-  newNote.save().then(createdNote => {
-    res.status(200).json({
-      message: "Note saved successfully",
-      noteId: createdNote._id
+  let error = checkErrorNote(res, newNote);
+  if(error == undefined){
+    newNote.save().then(createdNote => {
+      res.status(200).json({
+        error: 0,
+        message: "Note saved successfully",
+        value: {
+          id: createdNote._id,
+          dateCreated: createdNote.dateCreated,
+          lastUpdated: createdNote.lastUpdated,
+          color: createdNote.color,
+          todos: createdNote.todos
+        }
+      })
+    }).catch(e => {
+      res.status(400).send(e);
     })
-  }).catch(e => {
-    res.status(400).send(e);
-  })
+  }
 });
 
-// This is created to test if the mongoose schema works correctly
-app.get("/api/test", (req, res, next) => {
-  const newNote = new Note({
-    id: 1,
-    title: "First title",
-    todos: [{ content: "Todo one" }, { content: "Todo two" }],
-    color: {
-      r: 63,
-      g: 63,
-      b: 63,
-      a: 1,
-    },
-  });
-
-  res.status(200).json(newNote);
-});
 
 app.get("/api/notes", (req, res, next) => {
 
@@ -104,26 +108,5 @@ app.get("/api/notes", (req, res, next) => {
 
 });
 
-function fetchFromDB() {
-  const data = [];
-
-  data.push({
-    title: "News 1",
-    content: "News Content 1"
-  });
-  data.push({
-    title: "News 2",
-    content: "News Content 2"
-  });
-  data.push({
-    title: "News 3",
-    content: "News Content 3"
-  });
-  return data;
-}
-
-app.get("/api/newslatest", (req, res, next) => {
-  res.status(200).json(fetchFromDB());
-});
 
 module.exports = app;

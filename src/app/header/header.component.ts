@@ -10,7 +10,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 
 export interface DialogData {
   title: string;
-  content: string;
+  content?: string;
+  todos?: [{_id: number, content: string, checked: boolean}]
 }
 
 
@@ -56,8 +57,11 @@ export class HeaderComponent implements OnInit {
       this.information = result;
       console.log(result);
       this.commService.hideNewNote(true);
+      this.commService.sendNotes(result.title, result.content, result.todos)
     });
   }
+
+
 
 }
 
