@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 export interface DialogData {
   title: string;
   content?: string;
-  todo?: [{_id: number, content: string, checked: boolean}]
+  todos?: [{id: number, content: string, checked: boolean}]
 }
 
 @Component({
@@ -59,9 +59,9 @@ export class NoteCreateComponent {
     if (event.value == 1) this.isTodo = false;
     else {
       this.isTodo = true;
-      if(this.data.todo == undefined)
-      this.data["todo"] = [{
-        _id: -1,
+      if(this.data.todos == undefined)
+      this.data["todos"] = [{
+        id: -1,
         content: '',
         checked: false,
       }]
@@ -79,8 +79,8 @@ export class NoteCreateComponent {
   //This creates a new todo when enter is clicked
   enterClicked(input: HTMLDivElement, todoInput: HTMLInputElement) {
     if (todoInput.value != "" && todoInput.value != undefined) {
-      this.data.todo!.push({
-        _id: -1,
+      this.data.todos!.push({
+        id: -1,
         content: '',
         checked: false,
       });

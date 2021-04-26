@@ -10,12 +10,13 @@ function checkErrorNote(res, note) {
   if (
     (note.content === undefined || note.content === "") &&
     (note.todos === undefined || note.todos.length == 0)
-  )
+  ){
   error = {
     message: "Either content of note or a todo list (1 or more) is required",
     type: "uselessNoteError",
     code: 1,
   };
+}
 
   if (error !== undefined){
     res.status(400).json(error);
@@ -65,11 +66,6 @@ app.post("/api/note", (req, res, next) => {
     todos: req.body.todos,
     color: req.body.color,
   });
-
-  console.log();
-  console.log();
-  console.dir("Todos->" + req.body.title)
-  console.log()
   // This checks for errors and sends a 400 response if any error is found
   let error = checkErrorNote(res, newNote);
   if(error == undefined){

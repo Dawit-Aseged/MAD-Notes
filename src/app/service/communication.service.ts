@@ -39,8 +39,6 @@ export class CommunicationService {
   }
 
   public getNotes() {
-
-
     this.httpClient
       .get<{message: string, notes: any}>('http://localhost:3000/api/notes')
       .pipe(map((noteData) => { // We map them to ensure that the data is correctly displayed (id != _id)
@@ -63,7 +61,7 @@ export class CommunicationService {
 
   }
 
-  public sendNotes (title: string, content?: string, todos?: [{_id: number, content: string, checked: boolean}] ) {
+  public sendNotes (title: string, content?: string, todos?: [{id: number, content: string, checked: boolean}] ) {
     const Note: Note = {
       id: -1,
       title: title,
@@ -73,8 +71,6 @@ export class CommunicationService {
       lastUpdated: new Date(),
       color: {r: 54, g: 54, b: 54, a: 1}
     }
-    console.log("Notessssss")
-    console.log(Note)
     this.httpClient
       .post<{error: number, message: string, value: any}>('http://localhost:3000/api/note', Note)
       .subscribe((responseData) => {

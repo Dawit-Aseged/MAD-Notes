@@ -11,7 +11,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 export interface DialogData {
   title: string;
   content?: string;
-  todos?: [{_id: number, content: string, checked: boolean}]
+  todos?: [{id: number, content: string, checked: boolean}]
 }
 
 
@@ -55,7 +55,6 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: DialogData) => {
       // Result could be undefined based on how it is closed
       this.information = result;
-      console.log(result);
       this.commService.hideNewNote(true);
       this.commService.sendNotes(result.title, result.content, result.todos)
     });

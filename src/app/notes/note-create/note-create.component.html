@@ -38,7 +38,7 @@
           id="titleTodo"
           />
         </mat-form-field>
-        <div class="singleTodo" *ngFor="let todo of data.todo; last as isLast">
+        <div class="singleTodo" *ngFor="let todo of data.todos; last as isLast">
           <mat-checkbox #checkBox [(ngModel)]="todo.checked"></mat-checkbox>
 
           <mat-form-field id="todo">

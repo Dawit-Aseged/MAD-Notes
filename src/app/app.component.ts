@@ -21,7 +21,6 @@ export class AppComponent implements OnInit, OnDestroy{
   // This fetches the notes
     this.noteSub = this.commService.getNotesUpdates()
     .subscribe((notes: Note[]) => {
-        console.log("poop")
         this.noteList = notes;
     })
   }
