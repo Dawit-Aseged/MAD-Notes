@@ -32,4 +32,8 @@ export class NotesComponent implements OnInit {
 
   }
 
+  deleteNote(note: Note) {
+    console.log(note);
+  }
+
 }

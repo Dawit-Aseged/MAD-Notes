@@ -1,7 +1,15 @@
 <div class="container">
   <div class="titlebar">
     <span>{{note.title}}</span>
+    <div class="misc-region">
+      <button mat-icon-button (click)="deleteNote(note)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+    </div>
   </div>
+
   <div class="center">
     <div class="content">
       <span>
