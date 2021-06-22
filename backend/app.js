@@ -104,5 +104,17 @@ app.get("/api/notes", (req, res, next) => {
 
 });
 
-
+app.delete("/api/note/:id",(req, res, next) => {
+  Note.deleteOne({_id: req.params.id}).then(() => {
+    res.status(200).json({
+      id: req.params.id,
+      message: "Note deleted"
+    })
+  }).catch(() => {
+    res.status(400).json({
+      id: -1,
+      message: "Note Not found"
+    })
+  })
+});
 module.exports = app;

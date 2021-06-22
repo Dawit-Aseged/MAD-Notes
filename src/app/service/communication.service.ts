@@ -61,6 +61,17 @@ export class CommunicationService {
 
   }
 
+  public deleteNote(id: number) {
+    this.httpClient.delete<{id: number, message: string}>('http://localhost:3000/api/note/'+id)
+    .subscribe((responseData) => {
+        console.log(responseData)
+        if(responseData.id != -1) {
+          const updatedNotes = this.Notes.filter(note => note.id != id)
+          this.Notes = updatedNotes;
+          this.notesUpdated.next([...this.Notes]);
+        }
+    })
+  }
   public sendNotes (title: string, content?: string, todos?: [{id: number, content: string, checked: boolean}] ) {
     const Note: Note = {
       id: -1,

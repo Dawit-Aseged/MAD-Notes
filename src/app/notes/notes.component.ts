@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { Note, Todo } from './note.model';
+import { CommunicationService } from './../service/communication.service';
+
+
 
 @Component({
   selector: 'app-notes',
@@ -10,7 +14,7 @@ export class NotesComponent implements OnInit {
 
   @Input() note!: Note;
 
-  constructor() {
+  constructor(private commService: CommunicationService) {
     // If the note is not defined then it sets up an placeholder note
     if (this.note === undefined) {
       this.note = {
@@ -33,7 +37,7 @@ export class NotesComponent implements OnInit {
   }
 
   deleteNote(note: Note) {
-    console.log(note);
+    this.commService.deleteNote(note.id);
   }
 
 }
