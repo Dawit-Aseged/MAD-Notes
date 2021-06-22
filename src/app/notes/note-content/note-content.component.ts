@@ -19,7 +19,7 @@ export class NoteContentComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.todoList === undefined)
+    if(this.todoList === undefined || this.todoList.length == 0)
       this.isTodo = false;
     if(this.content === "" || this.content === undefined)
       this.content = "Content Not Provided";

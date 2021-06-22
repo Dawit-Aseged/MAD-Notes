@@ -3,20 +3,21 @@
     <div class="title">
       <span>{{note.title}}</span>
     </div>
-    <div class="misc-region">
-      <button mat-icon-button (click)="deleteNote(note)">
-        <mat-icon color="warn">
-          delete
-        </mat-icon>
-      </button>
-      <button mat-icon-button>
-        <mat-icon color="primary">
-          edit
-        </mat-icon>
-      </button>
+    <div>
+      <div class="misc-region">
+        <button mat-icon-button (click)="deleteNote(note)">
+          <mat-icon color="warn">
+            delete
+          </mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon color="primary">
+            edit
+          </mat-icon>
+        </button>
+      </div>
     </div>
   </div>
-
   <div class="center">
     <div class="content">
       <span>
