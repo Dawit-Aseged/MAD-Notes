@@ -1,7 +1,7 @@
 .container {
 
   min-width: 250px;
-  max-width: 350px;;
+  max-width: 450px;;
   min-height: 300px;
   box-shadow: 0 0 5px black;
   border-radius: 10px;
@@ -11,19 +11,21 @@
 
 .titlebar {
   width: 100%;
-  height: 30px;
+  min-height: 30px;
   background-color: grey;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   padding-top: 5px;
   padding-bottom: 5px;
+
 }
 
 .titlebar span {
-  margin-left: 15px;
+
+  word-wrap: break-word;
 }
 
 .center {
@@ -36,3 +38,15 @@
   margin-right: 15px;
 }
 
+.misc-region{
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  margin-left: 15px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  width: 80%;
+}
